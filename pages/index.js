@@ -3,10 +3,23 @@ import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import Layout from "../components/Layout"
 import utilStyle from '../styles/utils.module.css'
+import { getPostsData } from '@/lib/post'
 
 import Link from "next/link"
 
-export default function Home() {
+// SSGの場合（外部から１回だけデータを持ってくる）
+export async function getStaticProps() {
+  const allPostsData = getPostsData() // id, title, date, thumbnail
+  console.log(allPostsData)
+
+  return {
+    props: {
+      allPostsData,
+    },
+  }
+}
+
+export default function Home({ allPostsData }) {
   return (
     <Layout>
       <section className={utilStyle.headingMd}>
@@ -16,70 +29,24 @@ export default function Home() {
       <section className={`${utilStyle.headingMd} ${utilStyle.padding1px}`}>
         <h2>エンジニアのブログ</h2>
         <div className={styles.grid}>
-          <article>
-            <Link href="/">
-              <img src="/images/thumbnail01.jpg"
+          {allPostsData.map(({ id, title, date, thumbnail }) => (
+            <article key={id}>
+            <Link href={`/posts/${id}`}>
+              <img src={`${thumbnail}`}
                 className={styles.thumbnailImage}
               />
             </Link>
-            <Link href="/"
+            <Link href={`/posts/${id}`}
               className={utilStyle.boldText}
             >
-              SSGとSSRの使いわけの場面はいつなのか？
+              {title}
             </Link>
             <br />
             <small className={utilStyle.lightText}>
-              February 23
+              {date}
             </small>
           </article>
-          <article>
-            <Link href="/">
-              <img src="/images/thumbnail01.jpg"
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href="/"
-              className={utilStyle.boldText}
-            >
-              SSGとSSRの使いわけの場面はいつなのか？
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>
-              February 23
-            </small>
-          </article>
-          <article>
-            <Link href="/">
-              <img src="/images/thumbnail01.jpg"
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href="/"
-              className={utilStyle.boldText}
-            >
-              SSGとSSRの使いわけの場面はいつなのか？
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>
-              February 23
-            </small>
-          </article>
-          <article>
-            <Link href="/">
-              <img src="/images/thumbnail01.jpg"
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href="/"
-              className={utilStyle.boldText}
-            >
-              SSGとSSRの使いわけの場面はいつなのか？
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>
-              February 23
-            </small>
-          </article>
+        ))}
         </div>
       </section>
     </Layout>
