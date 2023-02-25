@@ -1,18 +1,20 @@
 import Head from "next/head";
 import Link from "next/link";
+import styles from "./layout.module.css"
+import utileStyles from "../styles/utils.module.css"
 
 const name = "Shin code"
 export const siteTitle = "Next.js blog"
 
 function Layout ({ children }) {
     return (
-        <div>
+        <div className={styles.container}>
             <Head>
                 <Link rel="icon" href="/favicon.ico"></Link>
             </Head>
-            <heaer>
-                <img src="/images/profile.png" />
-                <h1>{ name }</h1>
+            <heaer className={styles.header}>
+                <img src="/images/profile.png" className={utileStyles.borderCircle} />
+                <h1 className={ utileStyles.heading2Xl }>{ name }</h1>
             </heaer>
             <main>{ children }</main>
         </div>
