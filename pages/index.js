@@ -10,7 +10,6 @@ import Link from "next/link"
 // SSGの場合（外部から１回だけデータを持ってくる）
 export async function getStaticProps() {
   const allPostsData = getPostsData() // id, title, date, thumbnail
-  console.log(allPostsData)
 
   return {
     props: {
@@ -18,6 +17,16 @@ export async function getStaticProps() {
     },
   }
 }
+
+// SSRの場合
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {
+//       // コンポーネントに渡すためのprops
+//       allPostsData,
+//     },
+//   }
+// }
 
 export default function Home({ allPostsData }) {
   return (
