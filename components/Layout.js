@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "./layout.module.css"
 import utileStyles from "../styles/utils.module.css"
+import Image from "next/image";
 
 const name = "Tomo code"
 export const siteTitle = "Next.js blog"
@@ -15,17 +16,23 @@ function Layout ({ children, home }) {
             <heaer className={styles.header}>
                 {home ? (
                     <>
-                        <img
+                        <Image
                             src="/images/profile.png"
                             className={`${utileStyles.borderCircle} ${styles.headerHomeImage}`}
+                            width={60}
+                            height={60}
+                            alt="image"
                         />
                         <h1 className={ utileStyles.heading2Xl }>{ name }</h1>
                     </>
                 ) : (
                     <>
-                        <img
+                        <Image
                             src="/images/profile.png"
                             className={`${utileStyles.borderCircle}`}
+                            width={60}
+                            height={60}
+                            alt="image"
                         />
                         <h1 className={ utileStyles.heading2Xl }>{ name }</h1>
                     </>
