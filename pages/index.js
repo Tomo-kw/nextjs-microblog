@@ -33,6 +33,7 @@ export default function Home({ allPostsData }) {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
+        <meta name="description" content="My awesome Next.js site" />
       </Head>
       <section className={utilStyle.headingMd}>
         <p>私は受託開発会社でエンジニアをやっています。</p>

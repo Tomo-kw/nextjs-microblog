@@ -10,10 +10,10 @@ export const siteTitle = "Next.js blog"
 function Layout ({ children, home }) {
     return (
         <div className={styles.container}>
-            <Head>
+            {/* <Head>
                 <Link rel="icon" href="/favicon.ico"></Link>
-            </Head>
-            <heaer className={styles.header}>
+            </Head> */}
+            <header className={styles.header}>
                 {home ? (
                     <>
                         <Image
@@ -37,7 +37,7 @@ function Layout ({ children, home }) {
                         <h1 className={ utileStyles.heading2Xl }>{ name }</h1>
                     </>
                 )}
-            </heaer>
+            </header>
             <main>{ children }</main>
             {!home && (
                 <Link href="/">←ホームへ戻る</Link>
